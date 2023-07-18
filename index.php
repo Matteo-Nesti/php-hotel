@@ -40,15 +40,6 @@ $hotels = [
 
 ];
 
-foreach ($hotels as &$hotel) {
-    if ($hotel['parking'] === false) {
-        $hotel['parking'] = '&#10060;';
-    } else {
-        $hotel['parking'] = '&#10004;';
-    }
-};
-
-
 ?>
 
 <!DOCTYPE html>
@@ -63,8 +54,11 @@ foreach ($hotels as &$hotel) {
 </head>
 
 <body>
-    <h1 class="text-center">hotels</h1>
-    <ul>
+    <h1 class="text-center my-5">hotels</h1>
+
+    <!-- lista primo push-->
+
+    <!-- <ul>
         <?php foreach ($hotels as $hotel) { ?>
             <li>
                 <?= $hotel['name'] ?>
@@ -86,7 +80,46 @@ foreach ($hotels as &$hotel) {
                 <?= $hotel['distance_to_center'] ?>
             </li>
         <?php } ?>
-    </ul>
+    </ul> -->
+    <div class="container">
+
+        <table class="table my-5">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descrizione</th>
+                    <th scope="col">Parcheggio</th>
+                    <th scope="col">Voto</th>
+                    <th scope="col">Distanza dal Centro</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <?php foreach ($hotels as $hotel) { ?>
+                    <tr>
+                        <td>
+                            <?= $hotel['name'] ?>
+                        </td>
+                        <td>
+                            <?= $hotel['description'] ?>
+                        </td>
+                        <td>
+                            <?= $hotel['parking'] === false ? '&#10060;' : '&#10004;' ?>
+                        </td>
+                        <td>
+                            <?= $hotel['vote'] ?> / 5
+                        </td>
+                        <td>
+                            <?= $hotel['distance_to_center'] ?> Km
+                        </td>
+                    </tr>
+
+                <?php } ?>
+            </tbody>
+
+        </table>
+    </div>
+
 </body>
 
 </html>
